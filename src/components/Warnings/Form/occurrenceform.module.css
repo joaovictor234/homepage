@@ -1,0 +1,34 @@
+.form {
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+}
+.form h3 {
+  font-size: 1.3rem;
+  text-align: center;
+  opacity: .7;
+}
+.input {
+  margin: 10px 0;
+  width: 400px;
+}
+.select_item {
+  margin: 5px;
+  border-radius: 5px;
+  color: #fff;
+}
+.select_item svg {
+  margin-right: 10px;
+}
+.group_buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.group_buttons button:last-child {
+  background-color: #a6193c;
+}
+.group_buttons button:last-child:hover {
+  background-color: #fd0b48;
+}

@@ -1,0 +1,32 @@
+.anual {
+  border: 1px solid rgba(0,0,0,.2);
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 1525px;
+}
+.anual_img {
+  margin: 0 30px;
+  height: 100px;
+}
+.carousel {
+  background-color: #EDEDED;
+  height: 225px;
+  padding: 30px 100px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: justify;
+}
+.carousel a {
+  margin: -30px;
+}
+.carousel h3 {
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+.carousel p {
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+}

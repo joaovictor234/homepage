@@ -1,0 +1,38 @@
+.allnews {
+  margin: 40px;
+}
+.newsbar_table {
+  width: 950px;
+}
+.additem {
+  background-color: #a6193c;
+  color: #fff;
+  margin: 5px;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirm_modal {
+  background-color: #fff;
+  padding: 15px;
+}
+.confirm_modal h4 {
+  font-size: 1.2rem;
+}
+.confirm_modal div  {
+  display: flex;
+  justify-content: space-between;
+}
+.grid_toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #8D8E8F;
+  color: #fff;
+}
+.grid_toolbar h4 {
+  padding: 0;
+  margin: 0;
+}

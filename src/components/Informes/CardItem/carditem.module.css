@@ -1,0 +1,58 @@
+.carditem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 30px;
+  margin-top: 10px;
+  color: #fff;
+  width: 40%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.header h6 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.header div {
+  display: flex;
+  align-items: center;
+}
+.header div span {
+  background-color: #fff;
+  color: #000;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 5px 10px;
+  margin-left: 5px;
+}
+
+.data {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+}
+.data div:last-child {
+  margin-right: 22px;
+}
+.data div p {
+  margin: 0;
+}
+.data div span {
+  font-weight: 600;
+}
+
+.conline {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(270deg, rgba(255, 255, 255, 1) 0%, rgba(242, 163, 15, 1) 0%, rgba(186, 61, 48, 1) 0%, rgba(219, 122, 29, 1) 0%, rgba(207, 100, 36, 1) 0%, rgba(166, 25, 60, 1) 77%);
+}
+
+.ressarcimento {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(115deg, rgba(255, 255, 255, 1) 0%, rgba(8, 103, 140, 1) 0%, rgba(7, 1, 64, 1) 87%);
+}

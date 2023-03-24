@@ -1,0 +1,25 @@
+.informes_container {
+  min-width: 1000px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  background-color: #eee;
+  padding: 0 0 10px 0;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.info h4 {
+  font-size: 17px;
+  background-color: #8D8E8F;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.info_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

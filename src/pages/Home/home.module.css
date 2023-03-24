@@ -1,0 +1,12 @@
+.home {
+  margin-left: 14vw;
+}
+.main_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1525px;
+}
+.content {
+  display: flex;
+}
