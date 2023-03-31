@@ -1,20 +1,27 @@
+//hooks
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+//components
 import { Button, FormControl, InputLabel, ListItemText, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { Occurrence } from '../../../interface/Occurrence';
+//icons
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import WarningAmberIcon from '@mui/icons-material/WarningAmberOutlined';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
+//styles
 import styles from './occurrenceform.module.css';
-import { Occurrence } from '../../../interface/Occurrence';
+//utils
 import { v4 } from 'uuid'
+import { convertToEnUSDataWithHoursAndMinutes } from '../../../util/convertData';
 
 interface IOccurrenceForm {
-  setOpenModal: Dispatch<SetStateAction<boolean>>,
+  setToggleModalForm: Dispatch<SetStateAction<boolean>>,
   occurrences: Occurrence[],
   setOccurrences: Dispatch<SetStateAction<Occurrence[]>>
 }
 
-const OccurenceForm = ({ occurrences, setOccurrences, setOpenModal }: IOccurrenceForm) => {
+const OccurenceForm = ({ occurrences, setOccurrences, setToggleModalForm }: IOccurrenceForm) => {
   const [title, setTitle] = useState('');
+  const [date, setDate] = useState(new Date());
   const [typeOccurrence, setTypeOccurrence] = useState('');
   const [isAllDataFilled, setIsAllDataFilled] = useState(false);
   const [selectColor, setSelectColor] = useState('');
@@ -23,9 +30,11 @@ const OccurenceForm = ({ occurrences, setOccurrences, setOpenModal }: IOccurrenc
     setTypeOccurrence(event.target.value as string);
   }
 
+  const handleDate = () => (date: Date | null) => {
+    if(date) setDate(date);
+  }
+
   useEffect(() => {
-    console.log("descripition: ", title)
-    console.log("type: ", typeOccurrence)
     if (title && typeOccurrence)
       setIsAllDataFilled(true);
     else setIsAllDataFilled(false);
@@ -51,11 +60,11 @@ const OccurenceForm = ({ occurrences, setOccurrences, setOpenModal }: IOccurrenc
     const newOccurrence = {
       id: v4(),
       title,
-      time: new Date(),
+      time: date,
       typeOccurrence
     };
     setOccurrences([...occurrences, newOccurrence])
-    setOpenModal(false)
+    setToggleModalForm(false)
   }
 
   return (
@@ -67,6 +76,11 @@ const OccurenceForm = ({ occurrences, setOccurrences, setOpenModal }: IOccurrenc
         rows={4}
         className={styles.input}
         onChange={e => setTitle(e.target.value)}></TextField>
+      <input 
+        type="datetime-local" 
+        onClick={handleDate}
+        className={styles.input_datetime}
+        value={convertToEnUSDataWithHoursAndMinutes(date)}/>
       <FormControl
         className={styles.input}
         style={{ margin: '10px 0' }}>
@@ -131,7 +145,7 @@ const OccurenceForm = ({ occurrences, setOccurrences, setOpenModal }: IOccurrenc
       <div className={styles.group_buttons}>
         <Button
           variant='outlined'
-          onClick={() => setOpenModal(false)}
+          onClick={() => setToggleModalForm(false)}
         >Fechar</Button>
         <Button 
           variant={isAllDataFilled ? 'contained' : 'text'} 

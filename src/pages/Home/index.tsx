@@ -8,21 +8,15 @@ import styles from './home.module.css';
 const Home = () => {
   return (
     <div className={styles.home}>
-      <div>
-        <Header />
-        <div className={styles.main_content}>
-          <div className={styles.content}>
-            <div>
-              <Warnings />
-              <Informes />
-            </div>
-            <div className={styles.newsbar}>
-              <NewsBar />
-            </div>
-          </div>
+      <Header/>
+      <div className={styles.main_content}>
+        <div>
+          <Warnings/>
+          <Informes/>
         </div>
+        <NewsBar/>
       </div>
-      <Anual />
+      <Anual/>
     </div>
   )
 }

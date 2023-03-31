@@ -14,7 +14,7 @@ const Header = () => {
         <LocalPostOfficeIcon />
         <NotificationsIcon />
         <AccountCircleIcon />
-        <Button>SAIR</Button>
+        <Button style={{color: '#fff'}}>SAIR</Button>
       </div>
     </div>
   )

@@ -1,56 +1,10 @@
-.warnings_container {
-  width: auto;
-  background-color: #eee;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding-bottom: 7px;
-}
-.warnings_header {
-  background-color: #8D8E8F;
-  color: #fff;
-  padding: 8px 10px;
-  margin-bottom: 7px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.warnings_header h4 {
-  font-size: 1.1rem;
-  margin-bottom: 0;
-}
 .messages {
   max-height: 200px;
   overflow-y: scroll;
-}
-.occurences_button {
-  margin: 0 10px;
-  color: #fff;
-  background-color: #a6193c;
-}
-.occurences_button:hover {
-  background-color: #fd0b48;
 }
 .warnings_header div {
   display: flex;
 }
 .occurence_span {
   padding: 16px;
-}
-.modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.confirm_modal {
-  background-color: #fff;
-  padding: 15px;
-}
-.confirm_modal h4 {
-  font-size: 1.2rem;
-}
-.confirm_modal div  {
-  display: flex;
-  justify-content: space-between;
 }

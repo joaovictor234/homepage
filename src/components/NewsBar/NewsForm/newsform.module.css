@@ -20,3 +20,19 @@
   display: flex;
   justify-content: space-between;
 }
+.button_group .button {
+  background-color: #a6193c;
+  color: #fff;
+  margin: 0px 3px;
+  border: none;
+}
+.button_group .button:hover {
+  background-color: #fd0b48;
+}
+.button_group .button_outlined {
+  border: 1px solid #a6193c;
+  color: #a6193c;
+}
+.button_group .button:disabled {
+  background-color: #eee;
+}

@@ -1,52 +1,25 @@
 import { Modal } from '@mui/material';
 import { DataGrid, GridToolbarContainer } from '@mui/x-data-grid';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useGetNews } from '../../hooks/getNews';
-import Button from '../Button';
 import styles from './allnews.module.css';
-import NewsForm from './NewsForm';
+import NewsForm from '../NewsBar/NewsForm';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ClearIcon from '@mui/icons-material/Clear';
 import SettingsIcon from '@mui/icons-material/Settings';
-import UndoIcon from '@mui/icons-material/Undo';
-import RedoIcon from '@mui/icons-material/Redo';
 import { NewsContext } from '../../context/NewsContext';
 import { NewsContextType } from '../../@types/NewsContextType';
-import { INews } from '../../interface/INews';
+import Button from '../Button';
+import { useNavigate } from 'react-router-dom';
 
 export const AllNews = () => {
+  const navigate = useNavigate();
   const [toggleOptions, setToggleOptions] = useState(false);
   const { rows, columns } = useGetNews(toggleOptions, 720);
-  const  { news, setNews } = useContext(NewsContext) as NewsContextType;
+  const { setNews } = useContext(NewsContext) as NewsContextType;
   const [toggleForm, setToggleForm] = useState(false);
   const [toggleConfirmModal, setConfirmModal] = useState(false);
-  const [undoNews, setUndoNews] = useState<INews[][]>([]);
-  const [redoNews, setRedoNews] = useState<INews[][]>([]);
-
-  const handleUndoAction = () => {
-    const undoNewsUpdated = [...undoNews];
-    const removedNews = undoNewsUpdated.pop();
-    if(removedNews) {
-      setNews(removedNews);
-      setRedoNews([...redoNews, removedNews]);
-    }
-    setUndoNews(undoNewsUpdated);
-  }
-
-  const handleRedoAction = () => {
-    const redoNewsUpdated = [...redoNews];
-    const removedNews = redoNewsUpdated.pop();
-    if(removedNews) {
-      setNews(removedNews);
-      setUndoNews([...redoNews, removedNews]);
-    }
-    setRedoNews(redoNewsUpdated);
-  }
-
-  useEffect(() => {
-    setUndoNews([...undoNews, news]);
-  }, [news.length, news])
 
   const CustomToolbar = () =>
     <GridToolbarContainer className={styles.grid_toolbar}>
@@ -55,35 +28,25 @@ export const AllNews = () => {
         toggleOptions ?
           <div>
             <Button
-              className={styles.additem}
+              className={styles.button}
               onClick={() => setToggleOptions(false)}>
-              <ArrowBackIcon />RETORNAR
+              <ArrowBackIcon />Retornar
             </Button>
             <Button
               onClick={() => setConfirmModal(true)}
-              className={styles.additem}>
-              <ClearIcon />REMOVER TODOS
+              className={styles.button}>
+              <ClearIcon />Remover todos
             </Button>
             <Button
-              onClick={handleUndoAction}
-              className={styles.additem}>
-              <UndoIcon />DESFAZER
-            </Button>
-            <Button
-              onClick={handleRedoAction}
-              className={styles.additem}>
-              REFAZER<RedoIcon />
-            </Button>
-            <Button
-              className={styles.additem}
+              className={styles.button}
               onClick={() => setToggleForm(true)}>
-              ADICIONAR<AddIcon />
+              Adicionar<AddIcon />
             </Button>
           </div> :
           <Button
-            className={styles.additem}
+            className={styles.button}
             onClick={() => setToggleOptions(true)}>
-            <SettingsIcon />OPÇÕES
+            <SettingsIcon />Opções
           </Button>
       }
     </GridToolbarContainer>
@@ -91,19 +54,22 @@ export const AllNews = () => {
   return (
     <div className={styles.allnews}>
       <DataGrid
-      sx={{
-        '& .css-204u17-MuiDataGrid-main': {
-          maxHeight: '543px',
-          overflowY: 'scroll'
-        }
-      }}
+        sx={{
+          '& .css-204u17-MuiDataGrid-main': {
+            maxHeight: '543px',
+            overflowY: 'scroll'
+          }
+        }}
         rows={rows}
-        autoHeight={true}
+        autoHeight
         columns={columns}
         components={{
           Toolbar: CustomToolbar
         }}
+        disableVirtualization
         disableRowSelectionOnClick
+        disableColumnSelector
+        rowSelection={false}
         hideFooter={true}
         density='compact'
         className={styles.newsbar_table} />
@@ -114,26 +80,30 @@ export const AllNews = () => {
         <NewsForm setToggleForm={setToggleForm} />
       </Modal>
 
-      <Modal 
+      <Modal
         open={toggleConfirmModal}
         className={styles.modal}
         onClose={() => setConfirmModal(false)}>
-          <div className={styles.confirm_modal}>
-            <h4>Remover todas as ocorrências?</h4>
-            <div>
-              <Button 
-                onClick={() => setConfirmModal(false)}>Fechar</Button>
-              <Button 
-  
-                className={styles.occurences_button}
-                onClick={() => {
-                  setNews([])
-                  setConfirmModal(false)
-                }}>Remover Todos</Button>
-            </div>
+        <div className={styles.confirm_modal}>
+          <h4>Remover todas as ocorrências?</h4>
+          <div>
+            <Button
+              className={styles.outlined_button}
+              onClick={() => setConfirmModal(false)}>Fechar</Button>
+            <Button
+              className={styles.button}
+              onClick={() => {
+                setNews([])
+                setConfirmModal(false)
+              }}>Remover Todos</Button>
           </div>
+        </div>
       </Modal>
-
+      <Button
+        onClick={() => navigate('/')}
+        className={styles.button}>
+        <ArrowBackIcon />Retornar
+      </Button>
     </div>
   )
 }

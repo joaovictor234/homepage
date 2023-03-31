@@ -2,22 +2,22 @@ import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid"
 import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { NewsContextType } from "../@types/NewsContextType"
 import { NewsContext } from "../context/NewsContext"
-import { convertData } from "../util/convertData";
+import { convertToBRLData } from "../util/convertData";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from "../styles/iconButton";
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export const useGetNews = (editMode: boolean, descriptionWidth: number, updated?: string) => {
+export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
   const { news, setNews } = useContext(NewsContext) as NewsContextType;
   const [selectedRowIdEdit, setSelectedRowIdEdit] = useState('');
   const [selectedRowDescription, setSelectedRowDescription] = useState('');
 
   const columns: GridColDef[] = [
-    { field: 'data', disableColumnMenu: true, sortable: false, width: 100 },
+    { field: 'data', headerName: "Data", disableColumnMenu: true, sortable: false, width: 100 },
     {
-      field: 'description', disableColumnMenu: true, sortable: false, width: descriptionWidth, renderCell: (params: GridRenderCellParams) => (
+      field: 'description', headerName: "Descrição", disableColumnMenu: true, sortable: false, width: 1000, renderCell: (params: GridRenderCellParams) => (
         params.row.id === selectedRowIdEdit ?
           <input
             type="text"
@@ -42,7 +42,7 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number, updated?
   }
 
   const editRow = (id: string) => {
-    setSelectedRowDescription('');
+    /* setSelectedRowDescription(''); */
     setSelectedRowIdEdit(id);
   }
 
@@ -105,7 +105,7 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number, updated?
   const rows = news.map(n => ({
     id: n.id,
     description: n.description,
-    data: convertData(n.data)
+    data: convertToBRLData(n.data)
   }))
 
   return { rows, columns };

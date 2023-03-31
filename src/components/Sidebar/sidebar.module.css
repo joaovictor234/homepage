@@ -1,59 +1,46 @@
 .sidebar {
-  height: 95vh;
-  margin: 0.5rem;
-  width: 20vw;
-  border-radius: 20px;
-  background-color: #011126;
-  padding: 1.5rem .5rem;
-  position: sticky;
-  top: 0.5rem;
-  transition: 300ms;
+  min-width: 200px;
+  color: #fff;
+  background-color: #8D8E8F;
+  display: flex;
+  flex-direction: column;
 }
-.sidebar_minimized {
-  min-width: 50px;
-  transition: 300ms;
+.tools {
+  padding: 1em;
 }
-.sidebar_maximized {
-  min-width: 300px;
-  transition: 300ms;
-  margin-right: -220px;
-}
-.sidebar_maximized ul a:first-child::after {
-  content: 'Home';
-  margin-left: 10px;
-}
-.sidebar_maximized ul a:nth-child(2)::after {
-  content: 'Admin';
-  margin-left: 10px;
-}
-.sidebar_maximized ul a:last-child::after {
-  content: 'Info';
-  margin-left: 10px;
+.tools p {
+  border-bottom: 1px solid #fff;
 }
 .sidebar ul {
-  padding: 10px;
+  padding: 5px;
   color: #fff;
   display: flex;
   flex-direction: column;
 }
-
-.sidebar ul a {
-  padding: 20px 5px;
+.sidebar ul li {
+  padding: 5px;
   margin: 5px;
-  text-decoration: none;
-  color: #fff;
-  transition: 500ms;
+  border-radius: 5px;
+  transition: 200ms;
 }
-.sidebar ul a:hover {
-  background-color: #08678C;
-  border-radius: 10px;
-  padding: 10px;
+.sidebar ul li:hover {
+  background-color: #595959;
 }
-.active_link {
-  background-color: #08678C;
-  border-radius: 10px;
+.sidebar ul i {
+  margin-right: 1em;
 }
-.sidebar ul a::before {
-  content: '';
-  border-radius: 30px;
+.chat {
+  display: flex;
+  justify-content: flex-end;
+}
+.chat i {
+  border: 1px solid #97ED8A;
+  color: #97ED8A;
+  padding: 0.5em;
+  border-radius: 20px;
+  transition: 200ms;
+}
+.chat i:hover {
+  background-color: #97ED8A;
+  color: #000;
 }

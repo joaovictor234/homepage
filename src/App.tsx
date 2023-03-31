@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AllNews } from './components/AllNews';
+import { Sidebar } from './components/Sidebar';
 import NewsContextProvider from './context/NewsContext';
 import NewsValuesContextProvider from './context/NewsValuesContext';
 import About from './pages/About';
@@ -13,6 +14,7 @@ function App() {
       <NewsContextProvider>
         <NewsValuesContextProvider>
           <BrowserRouter>
+            <Sidebar />
             <main className='content'>
               <Routes>
                 <Route path='/' element={<Home />} />

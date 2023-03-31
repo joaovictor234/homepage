@@ -1,22 +1,9 @@
 .newsbar {
-  width: 500px;
-  border: 1px solid rgba(0,0,0,.1);
+  max-width: 680px;
   border-radius: 5px;
-  margin: 0px 20px 0 25px;
   height: 595px;
   display: flex;
-  background-color: #eee;
   flex-direction: column;
-}
-.newsbar h4 {
-  text-align: start;
-  padding: 10px 0;
-  font-size: 15px;
-  font-weight: 500;
-  background-color: #8D8E8F;
-  padding: 10px;
-  color: #fff;
-  font-size: 1.2rem;
 }
 .newsbar_table {
   overflow-y: scroll;
@@ -27,18 +14,6 @@
 }
 .table_header {
   font-size: 13px;
-}
-.newsbar button {
-  background-color: #a6193c;
-  display: flex;
-  justify-content: flex-end;
-}
-.newsbar button:hover {
-  background-color: #fd0b48;
-}
-.newsbar button svg {
-  font-size: 16px;
-  margin-left: 5px;
 }
 .cell_icon {
   display: flex;

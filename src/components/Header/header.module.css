@@ -1,12 +1,13 @@
 .header {
-  width: 1525px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 97.5%;
   padding: 10px 20px;
-  background-color: rgba(0, 0, 0, .05);
-  margin: 10px 0;
-  border-radius: 20px;
+  background-color: #8D8E8F;
+  color: #fff;
+  margin: 1rem;
+  border-radius: 5px;
 }
 .header h1 {
   font-size: 20px;
@@ -18,5 +19,4 @@
 }
 .action_icons svg {
   margin: 0 10px;
-  opacity: .5;
 }

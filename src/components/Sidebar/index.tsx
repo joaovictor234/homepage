@@ -1,64 +1,49 @@
-import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
 import styles from './sidebar.module.css'
 
 export const Sidebar = () => {
-  const [activeLink, setActiveLink] = useState('');
-  const [isHover, setIsHover] = useState(true);
-
-  useEffect(() => {
-
-  }, [isHover])
 
   return (
-    <div className={
-      isHover ?
-      `${styles.sidebar} ${styles.sidebar_maximized}` :
-      `${styles.sidebar} ${styles.sidebar_minimized}`
-    } onMouseOver={() => setIsHover(true)} onMouseOut={() => setIsHover(false)}>
-      {
-        isHover ?
-          <ul>
-            <NavLink
-              to='/'
-              className={activeLink === 'home' ? styles.active_link : ''}
-              onClick={() => setActiveLink('home')}>
-              <i className="fa-sharp fa-solid fa-house"></i>
-            </NavLink>
-            <NavLink
-              to='/admin'
-              onClick={() => setActiveLink('admin')}
-              className={activeLink === 'admin' ? styles.active_link : ''}>
-              <i className="fa-solid fa-user-pen"></i>
-            </NavLink>
-            <NavLink
-              to='/about'
-              onClick={() => setActiveLink('about')}
-              className={activeLink === 'about' ? styles.active_link : ''}>
-              <i className="fa-solid fa-circle-info"></i>
-            </NavLink>
-          </ul> :
-          <ul>
-            <NavLink
-              to='/'
-              className={activeLink === 'home' ? styles.active_link : ''}
-              onClick={() => setActiveLink('home')}>
-              <i className="fa-sharp fa-solid fa-house"></i>
-            </NavLink>
-            <NavLink
-              to='/admin'
-              onClick={() => setActiveLink('admin')}
-              className={activeLink === 'admin' ? styles.active_link : ''}>
-              <i className="fa-solid fa-user-pen"></i>
-            </NavLink>
-            <NavLink
-              to='/about'
-              onClick={() => setActiveLink('about')}
-              className={activeLink === 'about' ? styles.active_link : ''}>
-              <i className="fa-solid fa-circle-info"></i>
-            </NavLink>
-          </ul>
-      }
+    <div className={styles.sidebar}>
+      <img
+        src="https://revistacipa.com.br/wp-content/uploads/2021/04/logo-social.png" alt="logo"
+        className={styles.logo}
+        height={100} />
+      <div className={styles.tools}>
+        <p>Ferramentas</p>
+        <ul>
+          <li>
+            <i className="fa-sharp fa-solid fa-house"></i>Início
+          </li>
+          <li>
+            <i className="fa-solid fa-user-pen"></i>Usuário
+          </li>
+          <li>
+            <i className="fa-solid fa-circle-info"></i>Sobre
+          </li>
+          <li>
+            <i className="fa-sharp fa-solid fa-gear"></i>Configurações
+          </li>
+        </ul>
+
+        <p>Outros</p>
+
+        <ul>
+          <li>
+            <i className="fa-solid fa-question"></i>Ajuda
+          </li>
+          <li>
+          <i className="fa-solid fa-magnifying-glass"></i>Pesquisar
+          </li>
+          <li>
+          <i className="fa-solid fa-circle-info"></i>Saiba mais
+          </li>
+          <li>
+          <i className="fa-solid fa-arrow-left"></i>Sair
+          </li>
+        </ul>
+
+        <div className={styles.chat}><i className="fa-solid fa-headset"></i></div>
+      </div>
     </div>
   )
 }

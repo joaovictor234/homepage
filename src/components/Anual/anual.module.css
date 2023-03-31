@@ -1,10 +1,52 @@
+.anual_container {
+  flex-direction: column;
+  margin-top: 10px;
+  width: 99.5%;
+}
 .anual {
-  border: 1px solid rgba(0,0,0,.2);
   display: flex;
   align-items: center;
-  margin-top: 10px;
+}
+.delete_buttons {
+  display: flex;
+  flex-direction: column;
+  background-color: #BFBFBF;
+}
+.delete_buttons h6 {
+  text-align: center;
+  margin: 5px 0;
+  color: #fff;
+}
+.delete_buttons div {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+.delete_buttons button {
   border-radius: 5px;
-  width: 1525px;
+  margin: 0 5px;
+  color: #fff;
+  border: 1px solid #a6193c;
+  color: #a6193c;
+  border: none;
+  padding: 2px 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  bottom: 0;
+  transition: .2s;
+}
+.delete_buttons div svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1em;
+}
+.delete_buttons .activeIndex {
+  background-color:#a6193c;
+  color: #fff;
+  bottom: 5px;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, .3);
 }
 .anual_img {
   margin: 0 30px;
@@ -13,18 +55,20 @@
 .carousel {
   background-color: #EDEDED;
   height: 225px;
+  min-width: 1359px;
   padding: 30px 100px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   text-align: justify;
 }
 .carousel a {
-  margin: -30px;
+  margin: 0 -30px;
 }
 .carousel h3 {
   font-size: 17px;
   margin-bottom: 10px;
 }
+
 .carousel p {
   font-size: 15px;
   padding: 0;

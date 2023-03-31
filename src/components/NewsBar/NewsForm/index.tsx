@@ -5,7 +5,7 @@ import { NewsContext } from "../../../context/NewsContext";
 import { INews } from "../../../interface/INews";
 import { v4 } from 'uuid';
 import styles from './newsform.module.css';
-import { convertData } from "../../../util/convertData";
+import { convertToAmericanData } from "../../../util/convertData";
 
 interface INewsForm {
   setToggleForm: Dispatch<SetStateAction<boolean>>;
@@ -48,13 +48,14 @@ const NewsForm = ({setToggleForm}: INewsForm) => {
         onChange={e => setDescription(e.target.value)}/>
       <input 
         type="date" 
-        value={convertData(data)}
+        value={convertToAmericanData(data)}
         className={styles.input_date}
         onChange={handleDate}
         />
       <div className={styles.button_group}>
         <Button 
-          className={styles.button} 
+          className={styles.button_outlined}
+          onClick={() => setToggleForm(false)}
           variant="outlined">Fechar</Button>
         <Button 
           className={styles.button} 

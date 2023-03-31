@@ -1,13 +1,14 @@
-.allnews {
-  margin: 40px;
-}
-.newsbar_table {
-  width: 950px;
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
 }
 .button {
   background-color: #a6193c;
   color: #fff;
   margin: 0px 5px;
+  transition: .2s;
 }
 .button:hover {
   background-color: #fd0b48;
@@ -15,12 +16,6 @@
 .outlined_button {
   border: 1px solid #a6193c;
   color: #a6193c;
-}
-.modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
 }
 .confirm_modal {
   background-color: #fff;
@@ -33,14 +28,22 @@
   display: flex;
   justify-content: space-between;
 }
-.grid_toolbar {
+.form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 5px;
+}
+.form h3 {
+  font-size: 1.2rem;
+  padding: 0 100px;
+}
+.input {
+  margin: 10px 0;
+}
+.button_group {
   display: flex;
   justify-content: space-between;
-  padding: 15px 0;
-  background-color: #8D8E8F;
-  color: #fff;
-}
-.grid_toolbar h4 {
-  padding: 15px 5px;
-  margin: 0 5px;
+  width: 100%;
 }
