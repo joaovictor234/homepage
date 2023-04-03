@@ -1,16 +1,14 @@
 .newsbar {
-  max-width: 680px;
+  max-width: 790px;
   border-radius: 5px;
-  height: 595px;
+  height: 575px;
   display: flex;
   flex-direction: column;
 }
 .newsbar_table {
-  overflow-y: scroll;
   margin: 10px;
-}
-.newsbar_table::-webkit-scrollbar {
-  width: 1px;
+  max-height: 560px;
+  overflow-y: scroll;
 }
 .table_header {
   font-size: 13px;

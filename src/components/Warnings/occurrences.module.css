@@ -1,10 +1,17 @@
 .messages {
   max-height: 200px;
+  min-height: 50px;
   overflow-y: scroll;
+}
+.no_messages {
+  display: flex;
+  justify-content: center;
 }
 .warnings_header div {
   display: flex;
 }
 .occurence_span {
+  width: 100%;
   padding: 16px;
+  text-align: center;
 }

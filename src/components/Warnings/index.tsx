@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 //components
 import OccurrenceMessage from './Message';
 import { Occurrence } from '../../interface/Occurrence';
@@ -11,6 +11,7 @@ import styles from './occurrences.module.css';
 
 const Warnings = () => {
   const [editMode, setEditMode] = useState(false);
+  const [thereIsNoWarnings, setThereIsNoWarnings] = useState(false);
   const [occurrences, setOccurrences] = useState<Occurrence[]>([
     {
       id: v4(),
@@ -33,6 +34,13 @@ const Warnings = () => {
   ])
   const [toggleModalForm, setToggleModalForm] = useState(false);
 
+  useEffect(() => {
+    if (occurrences.length === 0)
+      setThereIsNoWarnings(true);
+    else
+      setThereIsNoWarnings(false);
+  }, [occurrences.length]);
+
   return <Box
     title="Ocorrências"
     list={occurrences}
@@ -42,7 +50,7 @@ const Warnings = () => {
     toggleModalForm={toggleModalForm}
     setToggleModalForm={setToggleModalForm}
     children={
-      <div className={styles.messages}>
+      <div className={thereIsNoWarnings ? styles.no_messages : styles.messages}>
         {
           occurrences.length !== 0 ? occurrences.map(w =>
             <OccurrenceMessage

@@ -13,11 +13,28 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
   const { news, setNews } = useContext(NewsContext) as NewsContextType;
   const [selectedRowIdEdit, setSelectedRowIdEdit] = useState('');
   const [selectedRowDescription, setSelectedRowDescription] = useState('');
+  const [rowsPerPageOptions, setRowsPerPageOptions] = useState<(number | {
+    value: number;
+    label: string;
+  })[] | undefined>([]);
+
+  const calcWidthDescription = () => {
+    let width = 0
+    if (news.length > 0) {
+      width = news[0].description.length;
+      for (let n of news) {
+        if (n.description.length >= width) {
+          width = n.description.length;
+        }
+      }
+    }
+    return width * 7.5;
+  }
 
   const columns: GridColDef[] = [
-    { field: 'data', headerName: "Data", disableColumnMenu: true, sortable: false, width: 100 },
+    { field: 'data', headerName: "Data", headerAlign: 'center', width: 100 },
     {
-      field: 'description', headerName: "Descrição", disableColumnMenu: true, sortable: false, width: 1000, renderCell: (params: GridRenderCellParams) => (
+      field: 'description', headerName: "Descrição", headerAlign: 'left', disableColumnMenu: true, sortable: false, width: calcWidthDescription(), renderCell: (params: GridRenderCellParams) => (
         params.row.id === selectedRowIdEdit ?
           <input
             type="text"
@@ -64,7 +81,7 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
   if (editMode) {
     columns[0].headerName = 'Data';
     columns[1].headerName = 'Descrição'
-    columns.push({
+    columns.unshift({
       field: 'options', headerName: 'Opções',
       headerAlign: 'center', disableColumnMenu: true, sortable: false, width: 100,
       renderCell: (params: GridRenderCellParams) => (
@@ -96,9 +113,22 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
   }
 
   useEffect(() => {
-    if (selectedRowIdEdit) {
-      const [{ description }] = news.filter(n => n.id === selectedRowIdEdit);
-      setSelectedRowDescription(description);
+    setRowsPerPageOptions([]);
+    const rowsOptions = [];
+    rowsOptions.push({label: 'Todos', value: news.length});
+    if (news.length > 50) rowsOptions.unshift(50);
+    if (news.length > 25) rowsOptions.unshift(25);
+    if (news.length > 15) rowsOptions.unshift(15);
+    if (news.length > 5) rowsOptions.unshift(5);
+    setRowsPerPageOptions(rowsOptions);
+  }, [news.length]);
+
+  useEffect(() => {
+    if (news.length > 0) {
+      if (selectedRowIdEdit) {
+        const [{ description }] = news.filter(n => n.id === selectedRowIdEdit);
+        setSelectedRowDescription(description);
+      }
     }
   }, [selectedRowIdEdit, news]);
 
@@ -108,5 +138,5 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
     data: convertToBRLData(n.data)
   }))
 
-  return { rows, columns };
+  return { rows, columns, rowsPerPageOptions };
 }

@@ -8,9 +8,9 @@ import { NewsContextType } from '../../@types/NewsContextType';
 import NewsForm from './NewsForm';
 
 export const NewsBar = () => {
-  const { rows, columns } = useGetNews(false, 365);
-  const { news, setNews } = useContext(NewsContext) as NewsContextType;
   const [editMode, setEditMode] = useState(false);
+  const { rows, columns, rowsPerPageOptions } = useGetNews(editMode, 365);
+  const { news, setNews } = useContext(NewsContext) as NewsContextType;
   const [toggleModalForm, setToggleModalForm] = useState(false);
 
   return (
@@ -24,15 +24,21 @@ export const NewsBar = () => {
         toggleModalForm={toggleModalForm}
         setToggleModalForm={setToggleModalForm}
         children={
-          <DataGrid
-            autoHeight
-            rows={rows}
-            columns={columns}
-            disableRowSelectionOnClick
-            hideFooter={true}
-            density='compact'
-            columnHeaderHeight={0}
-            className={styles.newsbar_table} />
+          <div className={styles.newsbar_table}>
+            <DataGrid
+              autoHeight
+              rows={rows}
+              columns={columns}
+              disableRowSelectionOnClick
+              scrollbarSize={1}
+              density='compact'
+              localeText={{
+                MuiTablePagination: {
+                  labelRowsPerPage: 'Linhas por página',
+                  rowsPerPageOptions: rowsPerPageOptions
+                }
+              }} />
+          </div>
         }
         formChildren={<NewsForm
           setToggleForm={setToggleModalForm} />}

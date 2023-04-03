@@ -1,13 +1,11 @@
-.informes_container {
-  min-width: 1000px;
-}
 .info {
   display: flex;
   flex-direction: column;
   background-color: #eee;
   padding: 0 0 10px 0;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin: 10px 20px;
+  box-shadow: 1px 2px 5px rgba(0,0,0,.4);
 }
 .info h4 {
   font-size: 17px;
