@@ -8,7 +8,7 @@
 .newsbar_table {
   margin: 10px;
   max-height: 560px;
-  overflow-y: scroll;
+  overflow-x: scroll;
 }
 .table_header {
   font-size: 13px;
@@ -20,4 +20,23 @@
 .cell_icon svg {
   color: green;
   margin-right: 3px;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: sticky;
+  bottom: 0;
+  font-size: 0.9em;
+  background-color: #eee;
+  border-top: 1px solid rgba(0,0,0,.5);
+}
+.footer_element {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+.footer_element p {
+  margin: 0;
+  margin-right: 5px;
 }

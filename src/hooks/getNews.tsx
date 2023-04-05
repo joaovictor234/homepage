@@ -1,25 +1,27 @@
 import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid"
 import { ChangeEvent, useContext, useEffect, useState } from "react"
+
 import { NewsContextType } from "../@types/NewsContextType"
 import { NewsContext } from "../context/NewsContext"
+
 import { convertToBRLData } from "../util/convertData";
+
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from "../styles/iconButton";
 import CheckIcon from '@mui/icons-material/Check';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+import { IOption } from '../interface/Option';
+
 export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
   const { news, setNews } = useContext(NewsContext) as NewsContextType;
   const [selectedRowIdEdit, setSelectedRowIdEdit] = useState('');
   const [selectedRowDescription, setSelectedRowDescription] = useState('');
-  const [rowsPerPageOptions, setRowsPerPageOptions] = useState<(number | {
-    value: number;
-    label: string;
-  })[] | undefined>([]);
+  const [rowsPerPageOptions, setRowsPerPageOptions] = useState<(number | IOption)[] | undefined>([]);
 
   const calcWidthDescription = () => {
-    let width = 0
+    let width = 100
     if (news.length > 0) {
       width = news[0].description.length;
       for (let n of news) {
@@ -115,7 +117,7 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
   useEffect(() => {
     setRowsPerPageOptions([]);
     const rowsOptions = [];
-    rowsOptions.push({label: 'Todos', value: news.length});
+    rowsOptions.push(new IOption(news.length, 'Todos'));
     if (news.length > 50) rowsOptions.unshift(50);
     if (news.length > 25) rowsOptions.unshift(25);
     if (news.length > 15) rowsOptions.unshift(15);
