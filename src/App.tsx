@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { AllNews } from './components/AllNews';
 import { Sidebar } from './components/Sidebar';
 import NewsContextProvider from './context/NewsContext';
 import NewsValuesContextProvider from './context/NewsValuesContext';
@@ -20,7 +19,6 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/about' element={<About />} />
-                <Route path='/all-news' element={<AllNews />} />
               </Routes>
             </main>
           </BrowserRouter>

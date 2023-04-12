@@ -115,17 +115,6 @@ export const useGetNews = (editMode: boolean, descriptionWidth: number) => {
   }
 
   useEffect(() => {
-    setRowsPerPageOptions([]);
-    const rowsOptions = [];
-    rowsOptions.push(new IOption(news.length, 'Todos'));
-    if (news.length > 50) rowsOptions.unshift(50);
-    if (news.length > 25) rowsOptions.unshift(25);
-    if (news.length > 15) rowsOptions.unshift(15);
-    if (news.length > 5) rowsOptions.unshift(5);
-    setRowsPerPageOptions(rowsOptions);
-  }, [news.length]);
-
-  useEffect(() => {
     if (news.length > 0) {
       if (selectedRowIdEdit) {
         const [{ description }] = news.filter(n => n.id === selectedRowIdEdit);

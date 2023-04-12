@@ -1,0 +1,69 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  min-height: 555px;
+  padding: 0;
+  margin: 0;
+}
+.header {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 15% 15% 70%;
+  background-color: #ccc;
+}
+.header p {
+  margin: 10px 0;
+  padding: 0;
+  text-align: center;
+  border-left: 1px solid rgba(0,0,0,0.2);
+}
+.header p:first-child {
+  border-left: none;
+}
+.row {
+  display: grid;
+  padding: 5px 0;
+  margin: 5px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.row:last-child {
+  border-bottom: none;
+}
+.row_default {
+  grid-template-columns: 15% 75%;
+}
+.row_editmode {
+  grid-template-columns: 15% 15% 70%;
+}
+.row_value {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.row_value p {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.row_options {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 13px;
+}
+.row_options button {
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 0 3px;
+  padding: 5px;
+  border: none;
+}
+.no_rows {
+  text-align: center;
+  margin-top: 10px;
+}
+.edit_input {
+  width: 100%;
+  margin-right: 2px;
+  padding: 5px;
+}

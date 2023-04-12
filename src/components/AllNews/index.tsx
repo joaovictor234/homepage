@@ -3,7 +3,7 @@ import { DataGrid, GridToolbarContainer } from '@mui/x-data-grid';
 import { useContext, useState } from 'react';
 import { useGetNews } from '../../hooks/getNews';
 import styles from './allnews.module.css';
-import NewsForm from '../NewsBar/NewsForm';
+import NewsForm from '../NewsBar/Form';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ClearIcon from '@mui/icons-material/Clear';
