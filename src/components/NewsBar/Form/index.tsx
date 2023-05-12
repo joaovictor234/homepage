@@ -1,70 +1,79 @@
-import { Button, TextField } from "@mui/material";
-import { ChangeEvent, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { NewsContextType } from "../../../@types/NewsContextType";
 import { NewsContext } from "../../../context/NewsContext";
 import { INews } from "../../../interface/INews";
-import { v4 } from 'uuid';
-import styles from './newsform.module.css';
-import { convertToAmericanData } from "../../../util/convertData";
 
-interface INewsForm {
+import { v4 } from "uuid";
+import { useStyles } from "./newsBarForm";
+import { TextField } from "@material-ui/core";
+import { convertToAmericanData } from "../../../util/convertData";
+import Button from "../../EditableBox/Button";
+
+interface INewsBarForm {
   setToggleForm: Dispatch<SetStateAction<boolean>>;
 }
 
-const NewsForm = ({setToggleForm}: INewsForm) => {
-  const { news, setNews } = useContext(NewsContext) as NewsContextType;
-  const [description, setDescription] = useState('');
-  const [data, setData] = useState<Date>(new Date());
-  const [allInputFilled, setAllInputFilled] = useState(false);
+const NewsBarForm = ({ setToggleForm }: INewsBarForm) => {
+  const classes = useStyles();
+  const { setNews } = useContext(NewsContext) as NewsContextType;
+  const [description, setDescription] = useState("");
+  const [data, setData] = useState(new Date());
+  const [isAllInputFilled, setIsAllInputFilled] = useState(false);
 
   const handleDate = (event: ChangeEvent<HTMLInputElement>) => {
     const newDate = new Date(event.target.value);
     setData(newDate);
-  }
+  };
 
   const save = () => {
     const newNews: INews = {
       id: v4(),
-      description, 
-      data
-    }
-    setNews([...news, newNews]);
+      description,
+      data,
+    };
+    setNews((currentNews) => [...currentNews, newNews]);
     setToggleForm(false);
-  }
+  };
 
   useEffect(() => {
-    if(description && data) {
-      setAllInputFilled(true)
-    } else setAllInputFilled(false)
-  }, [description, data])
+    if (description && data) {
+      setIsAllInputFilled(true);
+    } else setIsAllInputFilled(false);
+  }, [description, data]);
 
   return (
-    <form className={styles.form}>
+    <div className={classes.form}>
       <h3>Adicionar uma nova ocorrência</h3>
       <TextField
         label="Descrição"
         variant="outlined"
-        className={styles.input} 
-        onChange={e => setDescription(e.target.value)}/>
-      <input 
-        type="date" 
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="date"
         value={convertToAmericanData(data)}
-        className={styles.input_date}
+        className={classes.inputDate}
         onChange={handleDate}
-        />
-      <div className={styles.button_group}>
+      />
+      <div className={classes.buttonGroup}>
         <Button 
-          className={styles.button_outlined}
-          onClick={() => setToggleForm(false)}
-          variant="outlined">Fechar</Button>
-        <Button 
-          className={styles.button} 
-          disabled={!allInputFilled}
-          onClick={save}
-          variant={allInputFilled ? 'contained' : 'text'}>Salvar</Button>
+          variant="outlined"
+          onClick={() => setToggleForm(false)}>
+          Fechar
+        </Button>
+        <Button disabled={!isAllInputFilled} onClick={save}>
+          Salvar
+        </Button>
       </div>
-    </form>
-  )
-}
+    </div>
+  );
+};
 
-export default NewsForm;
+export default NewsBarForm;

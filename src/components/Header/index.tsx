@@ -1,23 +1,38 @@
-import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOfficeOutlined';
-import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
-import AccountCircleIcon from '@mui/icons-material/AccountCircleOutlined';
-import { Button } from '@mui/material';
-import styles from './header.module.css';
+import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOfficeOutlined";
+import NotificationsIcon from "@mui/icons-material/NotificationsOutlined";
+import AccountCircleIcon from "@mui/icons-material/AccountCircleOutlined";
+import { useStyles } from "./headerStyle";
+import Button from "../EditableBox/Button";
+import { FormControlLabel, Switch } from "@mui/material";
+import { Dispatch, SetStateAction } from "react";
 
-const Header = () => {
+interface IHeader {
+  admin: boolean;
+  setAdmin: Dispatch<SetStateAction<boolean>>;
+}
+
+const Header = ({ admin, setAdmin }: IHeader) => {
+  const classes = useStyles();
+
   return (
-    <div className={styles.header}>
-      <div>
+    <div className={classes.header}>
+      <div className={classes.title}>
         <h1>Portal</h1>
+        <FormControlLabel
+          control={<Switch checked={admin} onChange={() => setAdmin(!admin)} />}
+          label={admin ? "Administrador" : "Usuário"}
+        />
       </div>
-      <div className={styles.action_icons}>
+      <div className={classes.actionIcons}>
         <LocalPostOfficeIcon />
         <NotificationsIcon />
         <AccountCircleIcon />
-        <Button style={{color: '#fff'}}>SAIR</Button>
+        <Button variant="outlined" onClick={() => {}}>
+          Sair
+        </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

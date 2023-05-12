@@ -1,32 +1,35 @@
-import { Card } from "@mui/material";
+import { Card } from '@mui/material';
 import { convertMoneyToBRL } from '../../../util/convertMoneyToBRL';
-import styles from './carditem.module.css';
+import { useStyles } from './cardItemStyle';
 
 interface ICardItem {
   qtd: number,
-  totalValue: number,
+  total: number,
   percentage: number,
-  type: 'conline' | 'ressarcimento'
+  type: "conline" | "ressarcimento"
 }
 
-const CardItem = ({ qtd, totalValue, percentage, type }: ICardItem) => {
+const CardItem = ({ qtd, total, percentage, type }: ICardItem) => {
+  const classes = useStyles();
 
   return (
-    <Card className={type === 'conline' ? `${styles.carditem} ${styles.conline}` : `${styles.carditem} ${styles.ressarcimento}`}>
-      <div className={styles.header}>
-        <h6>{type === 'conline' ? 'Compras Online' : 'Ressarcimento'}</h6>
+    <Card className={type === "conline" ? 
+      `${classes.container} ${classes.conline}` : 
+      `${classes.container} ${classes.ressarcimento}`}>
+      <div className={classes.header}>
+        <h6>{type === "conline" ? "Compras Online" : "Ressarcimento"}</h6>
         <div>
           Quantidade
           <span>{qtd}</span>
         </div>
       </div>
-      <div className={styles.data}>
+      <div className={classes.data}>
         <div>
-          <p>Valor total</p>
-          <span>R$ {convertMoneyToBRL(totalValue)}</span>
+          <p>Valor Total</p>
+          <span>R$ {convertMoneyToBRL(total)}</span>
         </div>
         <div>
-          <p>Percentagem</p>
+          <p>Porcentagem</p>
           <span>{percentage} %</span>
         </div>
       </div>

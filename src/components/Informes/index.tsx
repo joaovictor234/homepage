@@ -1,47 +1,62 @@
-import { Box } from '@mui/material';
-import CardItem from './CardItem';
-import styles from './informes.module.css';
+import { useState } from "react";
 
-const week = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+import HomeBox from "../Box";
+import InformesContent from "./Content";
 
-const months = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+const months = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
+];
 
 const Informes = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [visualizationMode, setVisualizationMode] = useState<
+    "day" | "month" | "year"
+  >("day");
+  let title = "Sem resultados";
+
+  if (
+    selectedDate &&
+    selectedDate.getDate() &&
+    selectedDate.getMonth() &&
+    selectedDate.getFullYear()
+  ) {
+    switch (visualizationMode) {
+      case "day":
+        title = `Resultados para ${selectedDate.getDate()} de ${
+          months[selectedDate.getMonth()]
+        } de ${selectedDate.getFullYear()}`;
+        break;
+      case "month":
+        title = `Resultados para ${
+          months[selectedDate.getMonth()]
+        } de ${selectedDate.getFullYear()}`;
+        break;
+      case "year":
+        title = `Resultados para ${selectedDate.getFullYear()}`;
+    }
+  }
 
   return (
-    <div className={styles.informes_container}>
-      <Box className={styles.info}>
-        <h4>{week[new Date().getDay()]}, {new Date().getDay()} de {months[new Date().getMonth()]} de {new Date().getFullYear()}</h4>
-        <div className={styles.info_container}>
-          <CardItem
-            qtd={8}
-            totalValue={10000000}
-            percentage={60}
-            type='conline' />
-          <CardItem
-            qtd={12}
-            totalValue={50000000}
-            percentage={40}
-            type='ressarcimento' />
-        </div>
-      </Box>
-      <Box className={styles.info}>
-        <h4>{months[new Date().getMonth()]}</h4>
-        <div className={styles.info_container}>
-          <CardItem
-            qtd={8}
-            totalValue={10000000}
-            percentage={60}
-            type='conline' />
-          <CardItem
-            qtd={12}
-            totalValue={50000000}
-            percentage={40}
-            type='ressarcimento' />
-        </div>
-      </Box>
-    </div>
-  )
-}
+    <HomeBox title={title}>
+      <InformesContent
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        visualizationMode={visualizationMode}
+        setVisualizationMode={setVisualizationMode}
+      />
+    </HomeBox>
+  );
+};
 
 export default Informes;

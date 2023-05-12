@@ -1,49 +1,56 @@
-import styles from './sidebar.module.css'
+import { useStyles } from "./sidebarStyle";
 
-export const Sidebar = () => {
+const Sidebar = () => {
+  const classes = useStyles();
 
   return (
-    <div className={styles.sidebar}>
+    <div className={classes.sidebar}>
       <img
-        src="https://revistacipa.com.br/wp-content/uploads/2021/04/logo-social.png" alt="logo"
-        className={styles.logo}
-        height={100} />
-      <div className={styles.tools}>
-        <p>Ferramentas</p>
-        <ul>
-          <li>
+        src="https://revistacipa.com.br/wp-content/uploads/2021/04/logo-social.png"
+        alt="logo"
+        height={100}
+        className={classes.logo}
+      />
+      <div className={classes.tools}>
+        <p className={classes.toolsText}>Ferramentas</p>
+        <ul className={classes.list}>
+          <li className={classes.listItems}>
             <i className="fa-sharp fa-solid fa-house"></i>Início
           </li>
-          <li>
+          <li className={classes.listItems}>
             <i className="fa-solid fa-user-pen"></i>Usuário
           </li>
-          <li>
+          <li className={classes.listItems}>
             <i className="fa-solid fa-circle-info"></i>Sobre
           </li>
-          <li>
+          <li className={classes.listItems}>
             <i className="fa-sharp fa-solid fa-gear"></i>Configurações
           </li>
         </ul>
 
-        <p>Outros</p>
+        <p className={classes.toolsText}>Outros</p>
 
-        <ul>
-          <li>
+        <ul className={classes.list}>
+          <li className={classes.listItems}>
             <i className="fa-solid fa-question"></i>Ajuda
           </li>
-          <li>
-          <i className="fa-solid fa-magnifying-glass"></i>Pesquisar
+          <li className={classes.listItems}>
+            <i className="fa-solid fa-magnifying-glass"></i>Pesquisar
           </li>
-          <li>
-          <i className="fa-solid fa-circle-info"></i>Saiba mais
+          <li className={classes.listItems}>
+            <i className="fa-solid fa-circle-info"></i>Saiba mais
           </li>
-          <li>
-          <i className="fa-solid fa-arrow-left"></i>Sair
+          <li className={classes.listItems}>
+            <i className="fa-solid fa-arrow-left"></i>Sair
           </li>
         </ul>
 
-        <div className={styles.chat}><i className="fa-solid fa-headset"></i></div>
+        <div className={classes.chat}>
+          <i className="fa-solid fa-headset"></i>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default Sidebar;

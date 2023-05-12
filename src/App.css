@@ -1,11 +1,7 @@
 .App {
   font-family: 'Roboto', sans-serif;
   display: flex;
-  background-color: #eee;
+  flex-direction: row;
   flex: 1;
-}
-.content {
-  width: 100%;
-  margin-bottom: 40px;
-  padding: 0;
+  height: 100%;
 }
